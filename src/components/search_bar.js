@@ -10,7 +10,15 @@ import React, { Component } from 'react';
 class SearchBar extends React.Component {
   // Must define a render function and return JSX
   render() {
-    return <input/>;
+    // Pass to the element we want to monitor
+    return <input onChange={this.onInputChange} />;
+    // return <input onChange={ event => console.log(event.target.value)} />
+  }
+
+  // Create an Event Handler
+  onInputChange(event) {
+    // console.log(event);
+    // console.log(event.target.value);
   }
 }
 
