@@ -8,18 +8,31 @@ import React, { Component } from 'react';
 
 // Class component
 class SearchBar extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { term: '' };
+  }
+
+
   // Must define a render function and return JSX
   render() {
     // Pass to the element we want to monitor
-    return <input onChange={this.onInputChange} />;
-    // return <input onChange={ event => console.log(event.target.value)} />
+    return (
+      <div>
+        // Set the state with the value of user input
+        <input onChange={ event => this.setState({ term: event.target.value })} />
+        // Value of the input: {this.state.term}
+      </div>
+    );
+    // return <input onChange={this.onInputChange} />;
   }
 
-  // Create an Event Handler
-  onInputChange(event) {
-    // console.log(event);
-    // console.log(event.target.value);
-  }
+  // Create an Input Event Handler
+  // onInputChange(event) {
+  //   // console.log(event);
+  //   // console.log(event.target.value);
+  // }
 }
 
 export default SearchBar;
