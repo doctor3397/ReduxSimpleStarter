@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
+import VideoList from './components/video_list';
 const API_KEY = 'AIzaSyDdFHWlkcbT3wW3e_p_AlV-xHUYH8AcJGA';
 
 // Class Component
@@ -14,7 +15,7 @@ class App extends Component {
     this.state = { videos: [] };
 
     // Youtube Search Function
-    YTSearch({key: API_KEY, term: 'cats'}, function(videos) {
+    YTSearch({key: API_KEY, term: 'cats'}, (videos) => {
       // Callback function returns a list of videos
       this.setState({ videos });
       // this.setState({ videos: videos });
@@ -22,10 +23,13 @@ class App extends Component {
     });
   }
 
+  // Passing the videos data(props) from the App(parent) component into the VideoList(child) component
+  // props: availabe anywhere in a class component by calling this.props
   render() {
     return (
       <div>
         <SearchBar/>
+        <VideoList videos={this.state.videos}/>
       </div>
     );
   }
