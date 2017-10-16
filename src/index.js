@@ -17,15 +17,17 @@ class App extends Component {
       videos: [],
       selectedVideo: null
     };
+    this.videoSearch("cats");
+  }
 
-    // Youtube Search Function
-    YTSearch({key: API_KEY, term: 'cats'}, (videos) => {
+  // Youtube Search Function
+  videoSearch(term) {
+    YTSearch({key: API_KEY, term: term}, (videos) => {
       // Callback function returns a list of videos
       this.setState({
         videos: videos,
         selectedVideo: videos[0]
       });
-      // console.log(data);
     });
   }
 
@@ -35,7 +37,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <SearchBar/>
+        <SearchBar onSearchTermChange = {term => this.videoSearch(term)}/>
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList
           onVideoSelect= {selectedVideo => this.setState({selectedVideo})}
