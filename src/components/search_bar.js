@@ -19,7 +19,7 @@ class SearchBar extends React.Component {
   render() {
     // Pass to the element we want to monitor
     return (
-      <div>
+      <div className="search-bar">
         <input
           value={this.state.term} // Control conponent: Set the state with the value of user input // Value of the input: {this.state.term}
           onChange={ event => this.setState({ term: event.target.value })} />
