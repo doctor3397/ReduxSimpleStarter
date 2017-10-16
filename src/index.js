@@ -13,25 +13,33 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { videos: [] };
+    this.state = {
+      videos: [],
+      selectedVideo: null
+    };
 
     // Youtube Search Function
     YTSearch({key: API_KEY, term: 'cats'}, (videos) => {
       // Callback function returns a list of videos
-      this.setState({ videos });
-      // this.setState({ videos: videos });
+      this.setState({
+        videos: videos,
+        selectedVideo: videos[0]
+      });
       // console.log(data);
     });
   }
 
   // Passing the videos data(props) from the App(parent) component into the VideoList(child) component
   // props: availabe anywhere in a class component by calling this.props
+  // Pass onVideoSelect( callback fucntion) from App -> VideoList -> VideoListItem
   render() {
     return (
       <div>
         <SearchBar/>
-        <VideoDetail video={this.state.videos[0]}/>
-        <VideoList videos={this.state.videos}/>
+        <VideoDetail video={this.state.selectedVideo}/>
+        <VideoList
+          onVideoSelect= {selectedVideo => this.setState({selectedVideo})}
+          videos={this.state.videos}/>
       </div>
     );
   }
