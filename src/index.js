@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
@@ -35,9 +36,11 @@ class App extends Component {
   // props: availabe anywhere in a class component by calling this.props
   // Pass onVideoSelect( callback fucntion) from App -> VideoList -> VideoListItem
   render() {
+    // use debounce to call videoSearch every 300ms
+    const videoSearch = _.debounce((term) => { this.videoSearch(term)}, 300)
     return (
       <div>
-        <SearchBar onSearchTermChange = {term => this.videoSearch(term)}/>
+        <SearchBar onSearchTermChange = {videoSearch}/>
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList
           onVideoSelect= {selectedVideo => this.setState({selectedVideo})}
