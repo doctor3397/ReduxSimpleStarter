@@ -13,9 +13,12 @@ class SearchBar extends React.Component {
     this.state = { term: '' };
   }
 
-  onInputChange(term) {
+  onInputChange(event) {
+    const term = event.target.value;
+    // console.log(event);
+    // console.log(term);
     this.setState({ term: term });
-    this.props.onSearchTermChange(term);
+    this.props.videoSearch(term);
   }
 
   // Must define a render function and return JSX
@@ -25,7 +28,7 @@ class SearchBar extends React.Component {
       <div className="search-bar">
         <input
           value={this.state.term} // Control conponent: Set the state with the value of user input // Value of the input: {this.state.term}
-          onChange={ event => this.onInputChange(event.target.value)} />
+          onChange={ event => this.onInputChange(event)} />
       </div>
     );
     // return <input onChange={this.onInputChange} />;

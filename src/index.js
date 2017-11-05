@@ -19,6 +19,7 @@ class App extends Component {
       selectedVideo: null
     };
     this.videoSearch("cats");
+    this.onVideoSelect = this.onVideoSelect.bind(this);
   }
 
   // Youtube Search Function
@@ -32,6 +33,10 @@ class App extends Component {
     });
   }
 
+  onVideoSelect(selectedVideo) {
+    this.setState({selectedVideo})
+  }
+
   // Passing the videos data(props) from the App(parent) component into the VideoList(child) component
   // props: availabe anywhere in a class component by calling this.props
   // Pass onVideoSelect( callback fucntion) from App -> VideoList -> VideoListItem
@@ -40,10 +45,10 @@ class App extends Component {
     const videoSearch = _.debounce((term) => { this.videoSearch(term)}, 300)
     return (
       <div>
-        <SearchBar onSearchTermChange = {videoSearch}/>
+        <SearchBar videoSearch = {videoSearch}/>
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList
-          onVideoSelect= {selectedVideo => this.setState({selectedVideo})}
+          onVideoSelect= {this.onVideoSelect}
           videos={this.state.videos}/>
       </div>
     );
