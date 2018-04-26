@@ -13,12 +13,13 @@ class SearchBar extends React.Component {
     this.state = { term: '' };
   }
 
+  // Create an Input Event Handler
   onInputChange(event) {
     const term = event.target.value;
     // console.log(event);
     // console.log(term);
     this.setState({ term: term });
-    this.props.videoSearch(term);
+    this.props.onSearchTermChange(term);
   }
 
   // Must define a render function and return JSX
@@ -33,12 +34,6 @@ class SearchBar extends React.Component {
     );
     // return <input onChange={this.onInputChange} />;
   }
-
-  // Create an Input Event Handler
-  // onInputChange(event) {
-  //   // console.log(event);
-  //   // console.log(event.target.value);
-  // }
 }
 
 export default SearchBar;

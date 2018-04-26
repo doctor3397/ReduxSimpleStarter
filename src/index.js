@@ -45,7 +45,7 @@ class App extends Component {
     const videoSearch = _.debounce((term) => { this.videoSearch(term)}, 300)
     return (
       <div>
-        <SearchBar videoSearch = {videoSearch}/>
+        <SearchBar onSearchTermChange = {videoSearch}/>
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList
           onVideoSelect= {this.onVideoSelect}
